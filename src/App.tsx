@@ -4,11 +4,15 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { type Movie } from './types'
 import { Checkbox } from './widgets/Checkbox'
+import { getRandomInt, splitIntoWholeNumbers } from './utils'
+import { useFetch } from './hooks/useFetch'
 
 const ALL_GENRE = 'All Genres'
 const ANY_SCORE = 'Any Score'
 
 function App() {
+  const { data } = useFetch<any>('./movies_list.json')
+
   const [movies, setMovies] = useState<Movie[]>([])
   const [movieSpin, setMovieSpin] = useState<Movie | null>(null)
   const [genres, setGenres] = useState<string[]>([ALL_GENRE])
@@ -21,14 +25,9 @@ function App() {
   const [isTypeTVShow, setTypeTVShow] = useState<boolean>(false)
   const [countSpin, setCountSpin] = useState<number>(0)
 
-  const fetchData = () => {
-    fetch('./movies_list.json')
-      .then(resp => resp.json())
-      .then(d => setMovies(d.movies_list))
-      .catch(console.log)
-  }
-
-  useEffect(() => fetchData(), [])
+  useEffect(() => {
+    data && setMovies(data?.movies_list || [])
+  }, [data])
 
   useEffect(() => {
     getGenre()
@@ -132,15 +131,3 @@ function App() {
 }
 
 export default App
-
-
-
-function splitIntoWholeNumbers(arr: number[]): number[] {
-  return [...new Set(
-    arr.map(_ => ~~(_ % 10))
-  )]
-}
-
-function getRandomInt(max: number): number {
-  return Math.floor(Math.random() * max);
-}

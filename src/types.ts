@@ -1,4 +1,4 @@
-export interface Movie {
+interface Movie {
     id: number,
     title: string,
     year: number,
@@ -6,4 +6,8 @@ export interface Movie {
     image_path: string,
     genre_type: string,
     rating_score: number
+}
+
+export type {
+    Movie
 }
