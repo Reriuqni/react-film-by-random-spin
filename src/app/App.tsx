@@ -1,10 +1,10 @@
 import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
-import { Checkbox } from './widgets/Checkbox'
+import './styles/App.css'
+import { Checkbox } from '../widgets/Checkbox'
 import { useSpin } from './hooks/useSpin'
-import { Select } from './widgets/Select'
+import { Select } from '../widgets/Select'
 
 function App() {
   const {

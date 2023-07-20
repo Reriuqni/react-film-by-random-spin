@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useFetch } from "./useFetch"
-import { getRandomInt, splitIntoWholeNumbers } from "../utils"
+import { useFetch } from "../../shared/hooks/useFetch"
+import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
 
 export const ALL_GENRE = 'All Genres'
 export const ANY_SCORE = 'Any Score'

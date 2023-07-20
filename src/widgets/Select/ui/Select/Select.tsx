@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ALL_GENRE } from "../../../../hooks/useSpin"
+import { ALL_GENRE } from "../../../../app/hooks/useSpin"
 
 interface SelectType {
     list: string[],
