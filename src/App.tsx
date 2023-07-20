@@ -12,9 +12,9 @@ function App() {
     countSpin,
     handleSpin,
     imdbList,
-    handleSelectImdb,
     genres,
-    handleSelectGenre,
+    setSelectedGenre,
+    setSelectedImdb,
   } = useSpin()
 
   const [isTypeMovie, setTypeMovie] = useState<boolean>(false)
@@ -25,7 +25,7 @@ function App() {
       <div>
         <div>
           genre
-          <Select list={genres} handleHook={handleSelectGenre} />
+          <Select list={genres} handleHook={setSelectedGenre} />
         </div>
         <div style={{ display: 'flex' }}>
           <div>type</div>
@@ -36,7 +36,7 @@ function App() {
         </div>
         <div>
           imdb
-          <Select list={imdbList} handleHook={handleSelectImdb} prefixValue=" >= " />
+          <Select list={imdbList} handleHook={setSelectedImdb} prefixValue=" >= " />
         </div>
       </div>
       <button onClick={() => handleSpin()}>

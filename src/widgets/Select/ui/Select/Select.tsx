@@ -3,7 +3,8 @@ import { ALL_GENRE } from "../../../../hooks/useSpin"
 
 interface SelectType {
     list: string[],
-    handleHook?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+    // handleHook?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+    handleHook?: React.Dispatch<React.SetStateAction<string>>,
     prefixValue?: string,
 }
 
@@ -12,7 +13,7 @@ export const Select = ({ list, handleHook, prefixValue }: SelectType) => {
 
     const hanleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelect(e.target.value)
-        handleHook && handleHook(e)
+        handleHook && handleHook(e.target.value)
     }
 
     return <>

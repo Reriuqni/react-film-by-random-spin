@@ -90,14 +90,6 @@ export const useSpin = () => {
         setMovieSpin(rndMovie)
     }
 
-    const handleSelectGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedGenre(e.target.value)
-    }
-
-    const handleSelectImdb = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedImdb(e.target.value)
-    }
-
     return {
         genres,
         movieSpin,
@@ -105,8 +97,8 @@ export const useSpin = () => {
         countSpin,
         handleSpin,
         selectedGenre,
-        handleSelectGenre,
         selectedImdb,
-        handleSelectImdb,
+        setSelectedGenre,
+        setSelectedImdb,
     }
 }
