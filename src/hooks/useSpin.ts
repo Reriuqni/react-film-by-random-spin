@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react"
-import { Movie } from "../types"
 import { useFetch } from "./useFetch"
 import { getRandomInt, splitIntoWholeNumbers } from "../utils"
 
 export const ALL_GENRE = 'All Genres'
 export const ANY_SCORE = 'Any Score'
+
+interface Movie {
+    id: number,
+    title: string,
+    year: number,
+    description: string,
+    image_path: string,
+    genre_type: string,
+    rating_score: number
+}
 
 export const useSpin = () => {
     const { data } = useFetch<any>('./movies_list.json')
