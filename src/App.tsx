@@ -5,15 +5,14 @@ import './App.css'
 import { type Movie } from './types'
 import { Checkbox } from './widgets/Checkbox'
 import { getRandomInt, splitIntoWholeNumbers } from './utils'
-import { useFetch } from './hooks/useFetch'
+import { useSpin } from './hooks/useSpin'
 
 const ALL_GENRE = 'All Genres'
 const ANY_SCORE = 'Any Score'
 
 function App() {
-  const { data } = useFetch<any>('./movies_list.json')
+  const { movies } = useSpin()
 
-  const [movies, setMovies] = useState<Movie[]>([])
   const [movieSpin, setMovieSpin] = useState<Movie | null>(null)
   const [genres, setGenres] = useState<string[]>([ALL_GENRE])
   const [imdbList, setImdbList] = useState<string[]>([ANY_SCORE])
@@ -24,10 +23,6 @@ function App() {
   const [isTypeMovie, setTypeMovie] = useState<boolean>(false)
   const [isTypeTVShow, setTypeTVShow] = useState<boolean>(false)
   const [countSpin, setCountSpin] = useState<number>(0)
-
-  useEffect(() => {
-    data && setMovies(data?.movies_list || [])
-  }, [data])
 
   useEffect(() => {
     getGenre()
