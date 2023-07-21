@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useFetch } from "../../shared/hooks/useFetch"
 import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
+import { ALL_GENRE, ANY_SCORE, SPIN_TIME_MILISECONDS } from "../../configs/constants"
 
-export const ALL_GENRE = 'All Genres'
-export const ANY_SCORE = 'Any Score'
+const INIT_COUNT_SPIN = 0
 
 interface Movie {
     id: number,
@@ -27,7 +27,7 @@ export const useSpin = () => {
     const [selectedGenre, setSelectedGenre] = useState<string>(ALL_GENRE)
     const [selectedImdb, setSelectedImdb] = useState<string>(ANY_SCORE)
 
-    const [countSpin, setCountSpin] = useState<number>(0)
+    const [countSpin, setCountSpin] = useState<number>(INIT_COUNT_SPIN)
 
     useEffect(() => {
         data && setMovies(data?.movies_list || [])
@@ -80,9 +80,36 @@ export const useSpin = () => {
         setImdbList(_imdbList)
     }
 
+
+    const countSpinRef = useRef<number>(INIT_COUNT_SPIN);
+    useEffect(() => {
+        countSpinRef.current = countSpin;
+    }, [countSpin]);
+
+    const [isDisableSpinBtn, setDisaleSpinBtn] = useState<boolean>(false);
+    const [isChangeMsgBtn, setChangeMsgBtn] = useState<boolean>(false);
+
     const handleSpin = () => {
-        setCountSpin(prev => prev + 1)
-        getRandomMovie()
+        setMovieSpin(null)
+        setDisaleSpinBtn(true)
+
+        const myInterval = setInterval(() => {
+
+            if (countSpinRef.current >= SPIN_TIME_MILISECONDS) {
+                // Stop timer
+                clearInterval(myInterval);
+                getRandomMovie()
+
+                // Reinit counters
+                setCountSpin(INIT_COUNT_SPIN)
+
+                setDisaleSpinBtn(false)
+                !isChangeMsgBtn && setChangeMsgBtn(true)
+            } else {
+                setCountSpin(++countSpinRef.current)
+            }
+
+        }, 1000)
     }
 
     const getRandomMovie = () => {
@@ -103,11 +130,13 @@ export const useSpin = () => {
         genres,
         movieSpin,
         imdbList,
-        countSpin,
         handleSpin,
         selectedGenre,
         selectedImdb,
         setSelectedGenre,
         setSelectedImdb,
+        countSpin,
+        isDisableSpinBtn,
+        isChangeMsgBtn,
     }
 }

@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    --card-spin--max-width: 800px;
+    --card-spin--border-radius: 8px;
+    --card-spin--padding: 30px 20px;
+
+    max-width: var(--card-spin--max-width);
+    width: 100%;
+    border-radius: var(--card-spin--border-radius);
+    background-color: antiquewhite;
+    padding: var(--card-spin--padding);
+}
