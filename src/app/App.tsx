@@ -1,12 +1,8 @@
-import cls from './styles/app.module.scss'
+import cls from './styles/App.module.scss'
+import clsBtn from './styles/Button.module.scss'
 import { useSpin } from './hooks/useSpin'
 import { SPIN_TIME_MILISECONDS } from '../shared/configs/constants'
 import { SpinFilters } from '@/features/SpinFilters'
-
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './styles/App.css'
-// import './styles/index.css'
 
 function App() {
   const {
@@ -27,7 +23,7 @@ function App() {
     <>
       <div className={cls.container}>
         <div className={cls.cardSpin}>
-          <div>
+          <div className={cls.wrapFilters}>
             <SpinFilters
               genres={genres}
               setSelectedGenre={setSelectedGenre}
@@ -35,7 +31,11 @@ function App() {
               setSelectedImdb={setSelectedImdb}
               isDisableSpinBtn={isDisableSpinBtn}
             />
-            <button onClick={() => handleSpin()} disabled={isDisableSpinBtn}>
+            <button
+              className={clsBtn.button}
+              onClick={() => handleSpin()}
+              disabled={isDisableSpinBtn}
+            >
               {isChangeMsgBtn ? 'spin again' : 'spin'}
             </button>
           </div>

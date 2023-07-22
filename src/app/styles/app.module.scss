@@ -18,3 +18,9 @@
     display: flex;
     gap: calc(var(--global-step-horizontal) * 1.5);
 }
+
+.wrapFilters {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem
+}
