@@ -1,8 +1,7 @@
 import cls from './styles/App.module.scss'
-import clsBtn from './styles/Button.module.scss'
 import { useSpin } from './hooks/useSpin'
 import { SPIN_TIME_MILISECONDS } from '../shared/configs/constants'
-import { SpinFilters } from '@/features/SpinFilters'
+import { SpinActions } from '@/features/SpinActions'
 
 function App() {
   const {
@@ -23,23 +22,16 @@ function App() {
     <>
       <div className={cls.container}>
         <div className={cls.cardSpin}>
-          <div className={cls.wrapFilters}>
-            <SpinFilters
-              genres={genres}
-              setSelectedGenre={setSelectedGenre}
-              imdbList={imdbList}
-              setSelectedImdb={setSelectedImdb}
-              isDisableSpinBtn={isDisableSpinBtn}
-            />
-            <button
-              className={clsBtn.button}
-              onClick={() => handleSpin()}
-              disabled={isDisableSpinBtn}
-            >
-              {isChangeMsgBtn ? 'spin again' : 'spin'}
-            </button>
-          </div>
-
+          <SpinActions
+            genres={genres}
+            setSelectedGenre={setSelectedGenre}
+            imdbList={imdbList}
+            setSelectedImdb={setSelectedImdb}
+            isDisableSpinBtn={isDisableSpinBtn}
+            onClick={handleSpin}
+            disabled={isDisableSpinBtn}
+            label={isChangeMsgBtn ? 'spin again' : 'spin'}
+          />
           <div>
             {timerDown} sec
           </div>

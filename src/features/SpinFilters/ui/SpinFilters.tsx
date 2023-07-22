@@ -4,7 +4,7 @@ import { Checkbox } from '@/widgets/Checkbox'
 import { Select } from '@/widgets/Select'
 import { useState } from 'react'
 
-interface SpinFiltersType {
+export interface SpinFiltersType {
     genres: string[],
     setSelectedGenre: React.Dispatch<React.SetStateAction<string>>,
     imdbList: string[],

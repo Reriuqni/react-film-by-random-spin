@@ -1,1 +1,4 @@
-export { SpinFilters } from './ui/SpinFilters'
+export {
+    SpinFilters,
+    type SpinFiltersType,
+} from './ui/SpinFilters'
