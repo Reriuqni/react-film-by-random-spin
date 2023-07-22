@@ -1,5 +1,5 @@
 import cls from './styles/App.module.scss'
-import { useSpin } from './hooks/useSpin'
+import { useSpin } from './logics/useSpin'
 import { SPIN_TIME_MILISECONDS } from '../shared/configs/constants'
 import { SpinActions } from '@/features/SpinActions'
 
