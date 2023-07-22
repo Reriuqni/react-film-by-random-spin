@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { ALL_GENRE } from "../../../../configs/constants"
+import { ALL_GENRE } from "../../../../shared/configs/constants"
+import cls from './Select.module.scss'
 
 interface SelectType {
     list: string[],
@@ -9,7 +10,12 @@ interface SelectType {
     disabled?: boolean,
 }
 
-export const Select = ({ list, handleHook, prefixValue, disabled = false }: SelectType) => {
+export const Select = ({
+    list,
+    handleHook,
+    prefixValue,
+    disabled = false
+}: SelectType) => {
     const [select, setSelect] = useState<string>(ALL_GENRE)
 
     const hanleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -18,12 +24,17 @@ export const Select = ({ list, handleHook, prefixValue, disabled = false }: Sele
     }
 
     return <>
-        <select value={select} onChange={hanleSelect} disabled={disabled}>
-            {list.map((_, idx) => <option key={idx} value={_}>
-                {
-                    prefixValue && idx ? ' >= ' + _ : _
-                }
-            </option>)}
+        <select
+            className={cls.select}
+            value={select}
+            onChange={hanleSelect}
+            disabled={disabled}
+        >
+            {list.map((_, idx) =>
+                <option key={idx} value={_}>
+                    {prefixValue && idx ? ' >= ' + _ : _}
+                </option>
+            )}
         </select>
     </>
 }

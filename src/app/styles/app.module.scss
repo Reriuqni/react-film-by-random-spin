@@ -1,18 +1,20 @@
+@import './variables.scss';
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    color: var(--text-color--secondary);
+    font: var(--font-s);
 }
 
-.card {
-    --card-spin--max-width: 800px;
-    --card-spin--border-radius: 8px;
-    --card-spin--padding: 30px 20px;
-
+.cardSpin {
     max-width: var(--card-spin--max-width);
     width: 100%;
     border-radius: var(--card-spin--border-radius);
-    background-color: antiquewhite;
+    background-color: var(--card-spin--bg-color);
     padding: var(--card-spin--padding);
+    display: flex;
+    gap: calc(var(--global-step-horizontal) * 1.5);
 }

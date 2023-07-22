@@ -1,0 +1,19 @@
+$optionPadding: 4px;
+
+.select {
+    background-color: var(--dark-lighter);
+    transition: var(--globalt-transition-time);
+    padding: $optionPadding;
+    border-radius: 3px;
+    color: var(--text-color--secondary);
+
+    &:focus,
+    &:hover {
+        background-color: var(--dark-lighter--active);
+    }
+
+    option {
+        zoom: 1.2;
+        text-transform: capitalize;
+    }
+}

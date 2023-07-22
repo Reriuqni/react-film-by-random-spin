@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useFetch } from "../../shared/hooks/useFetch"
 import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
-import { ALL_GENRE, ANY_SCORE, SPIN_TIME_MILISECONDS } from "../../configs/constants"
+import { ALL_GENRE, ANY_SCORE, SPIN_TIME_MILISECONDS } from "../../shared/configs/constants"
 
 const INIT_COUNT_SPIN = 0
 

@@ -1,0 +1,22 @@
+.rowsFilter {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    >div {
+        display: grid;
+        grid-template-columns: 60px 160px;
+        width: 100%;
+        gap: var(--global-step-horizontal);
+
+        &>label {
+            text-transform: uppercase;
+        }
+
+        .wrapCheckboxes {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 8px;
+        }
+    }
+}

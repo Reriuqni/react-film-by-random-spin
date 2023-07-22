@@ -1,0 +1,31 @@
+:root {
+    --font-family-main: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    // colors
+    --text-color--main: #d8d8d8;
+    --text-color--secondary: #d8d8d8;
+    --dark-main: #4D585E;
+    --dark-lighter: #717477;
+    --dark-lighter--active: #313131;
+
+    // sizes
+    --global-step-horizontal: 1rem;
+
+    // fonts
+    // s
+    --font-size-s: 12px;
+    --font-line-s: 16px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+    --card-spin--max-width: 800px;
+    --card-spin--border-radius: 8px;
+    --card-spin--padding: 30px 24px;
+    --card-spin--bg-color: var(--dark-main);
+
+    --globalt-transition-time: 0.3s
+}
