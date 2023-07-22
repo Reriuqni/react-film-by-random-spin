@@ -2,6 +2,7 @@ import cls from './styles/App.module.scss'
 import { useSpin } from './logics/useSpin'
 import { SPIN_TIME_MILISECONDS } from '../shared/configs/constants'
 import { SpinActions } from '@/features/SpinActions'
+import { FilmCardAction } from '@/features/FilmCardAction'
 
 function App() {
   const {
@@ -38,7 +39,7 @@ function App() {
           <div>
             {!movieSpin && 'Let fate take the wheel!... Have a spin.'}
           </div>
-          {movieSpin && JSON.stringify(movieSpin, null, 2)}
+          <FilmCardAction movie={movieSpin} />
         </div>
       </div>
     </>

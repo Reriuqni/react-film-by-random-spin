@@ -2,18 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import { useFetch } from "../../shared/hooks/useFetch"
 import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
 import { ALL_GENRE, ANY_SCORE, SPIN_TIME_MILISECONDS } from "../../shared/configs/constants"
+import { Movie } from "./types"
 
 const INIT_COUNT_SPIN = 0
-
-interface Movie {
-    id: number,
-    title: string,
-    year: number,
-    description: string,
-    image_path: string,
-    genre_type: string,
-    rating_score: number
-}
 
 export const useSpin = () => {
     const { data } = useFetch<any>('./movies_list.json')
