@@ -1,8 +1,7 @@
-import { Movie } from "@/app/logics/types"
 import { SPIN_TIME_MILISECONDS } from "@/shared/configs/constants"
+import { FilmCard, FilmCardType } from "@/widgets/FilmCard"
 
-interface FilmCardActionType {
-    movie: Movie | null,
+interface FilmCardActionType extends FilmCardType {
     countSpin: number,
 }
 
@@ -16,6 +15,6 @@ export const FilmCardAction = ({ movie, countSpin }: FilmCardActionType) => {
         <div>
             {!movie && 'Let fate take the wheel!... Have a spin.'}
         </div>
-        {movie && JSON.stringify(movie, null, 2)}
+        <FilmCard movie={movie} />
     </>
 }
