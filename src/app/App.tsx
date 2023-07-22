@@ -35,10 +35,10 @@ function App() {
           <div>
             {timerDown} sec
           </div>
-          {movieSpin && JSON.stringify(movieSpin, null, 2)}
           <div>
             {!movieSpin && 'Let fate take the wheel!... Have a spin.'}
           </div>
+          {movieSpin && JSON.stringify(movieSpin, null, 2)}
         </div>
       </div>
     </>
