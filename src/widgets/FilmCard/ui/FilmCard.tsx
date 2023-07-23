@@ -43,7 +43,7 @@ export const FilmCard = ({ movie }: FilmCardType) => {
                 <div className={cls.filmAction}>
                     <div className={cls.wrapFavorite}>
                         <Button label={"+ Want to See"} buttonStyle={ButtonStyle.DARK} />
-                        <Button label={"Seen It"} buttonStyle={ButtonStyle.DARK} />
+                        <Button label={"Seen It"} buttonStyle={ButtonStyle.DARK} isLablePrefix={true} />
                     </div>
                     <Button label={"watch now"} />
                 </div>

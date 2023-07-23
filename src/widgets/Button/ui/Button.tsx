@@ -16,6 +16,7 @@ export interface ButtonType {
     label: string,
     size?: ButtonSize,
     buttonStyle?: ButtonStyle,
+    isLablePrefix?: boolean
 }
 
 export const Button = ({
@@ -24,6 +25,7 @@ export const Button = ({
     label,
     size,
     buttonStyle,
+    isLablePrefix = false,
 }: ButtonType) => {
     return <>
         <button
@@ -35,13 +37,15 @@ export const Button = ({
             onClick={onClick}
             disabled={disabled}
         >
+            {isLablePrefix && <span className={cls.labelPrefix}></span>}
+            {/* <span className={[isLablePrefix && cls.labelPrefix].join('')}>{label}</span> */}
             {label}
         </button>
     </>
 }
 
 
-// Logic
+// Logics
 function getClassStyle(style: ButtonStyle | undefined): string {
     if (!style) return ''
     let r = ''
