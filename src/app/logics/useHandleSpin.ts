@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { getRandomInt } from "../../utils"
 import { ANY_SCORE, SPIN_TIME_SECONDS } from "../../shared/configs/constants"
 import { Movie } from "./types"
@@ -36,24 +36,9 @@ export const useHandleSpin = ({
             setDisaleSpinBtn(true)
             handleTimer()
         }
-
-        function handleTimer() {
-            const myInterval = setInterval(() => {
-                // +1 for reason to fix delay by one second when timer is zero
-                if (countSpinRef.current + 1 >= SPIN_TIME_SECONDS) {
-                    clearInterval(myInterval)     // Stop timer
-                    getRandomMovie()
-                    setCountSpin(INIT_COUNT_SPIN) // Reinit counters
-                    setDisaleSpinBtn(false)
-                    !isChangeMsgBtn && setChangeMsgBtn(true)
-                } else {
-                    setCountSpin(++countSpinRef.current)
-                }
-            }, 1000)
-        }
     }
 
-    const getRandomMovie = () => {
+    const getRandomMovie = useCallback(() => {
         // Filtered Movies
         let fm = filteredMovieBySelectedGenre
         if (selectedImdb !== ANY_SCORE) {
@@ -64,7 +49,23 @@ export const useHandleSpin = ({
         const rndIdx = getRandomInt(fm.length)
         const rndMovie = fm[rndIdx]
         setMovieSpin(rndMovie)
-    }
+    }, [selectedImdb, filteredMovieBySelectedGenre])
+
+    const handleTimer = useCallback(() => {
+        const myInterval = setInterval(() => {
+            // +1 for reason to fix delay by one second when timer is zero
+            if (countSpinRef.current + 1 >= SPIN_TIME_SECONDS) {
+                clearInterval(myInterval)     // Stop timer
+                getRandomMovie()
+                setCountSpin(INIT_COUNT_SPIN) // Reinit counters
+                setDisaleSpinBtn(false)
+                !isChangeMsgBtn && setChangeMsgBtn(true)
+            } else {
+                setCountSpin(++countSpinRef.current)
+            }
+        }, 1000)
+    }, [countSpinRef.current, getRandomMovie, isChangeMsgBtn])
+
 
     return {
         countSpin,
