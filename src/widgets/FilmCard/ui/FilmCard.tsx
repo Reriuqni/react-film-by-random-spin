@@ -2,7 +2,7 @@ import { Movie } from "@/app/logics/types"
 import cls from './FilmCard.module.scss'
 import { getRandomInt } from "@/utils"
 import { Button, ButtonSize, ButtonStyle } from "@/widgets/Button"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 export interface FilmCardType {
     movie: Movie,
@@ -11,7 +11,7 @@ export interface FilmCardType {
 export const FilmCard = ({ movie }: FilmCardType) => {
     const [isShowMore, setShowMore] = useState<boolean>(true)
 
-    return <>
+    const Widget = useMemo(() =>
         <div className={cls.filmCard}>
             <div>
                 <img src={movie?.image_path} alt={movie?.title} />
@@ -50,5 +50,7 @@ export const FilmCard = ({ movie }: FilmCardType) => {
             </div>
 
         </div>
-    </>
+        , [movie, isShowMore])
+
+    return Widget
 }
