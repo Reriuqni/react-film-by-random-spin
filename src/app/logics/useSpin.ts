@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useFetch } from "../../shared/hooks/useFetch"
 import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
-import { ALL_GENRE, ANY_SCORE, SPIN_TIME_MILISECONDS } from "../../shared/configs/constants"
+import { ALL_GENRE, ANY_SCORE, SPIN_TIME_SECONDS } from "../../shared/configs/constants"
 import { Movie } from "./types"
 
 const INIT_COUNT_SPIN = 0
@@ -72,36 +72,44 @@ export const useSpin = () => {
     }
 
 
+    // The click SPIN button and timer Functionality 
+
     const countSpinRef = useRef<number>(INIT_COUNT_SPIN);
     useEffect(() => {
         countSpinRef.current = countSpin;
     }, [countSpin]);
 
     const [isDisableSpinBtn, setDisaleSpinBtn] = useState<boolean>(false);
+
+    // The hook to change the label of the SPIN button if the spin button pressed more than ones
     const [isChangeMsgBtn, setChangeMsgBtn] = useState<boolean>(false);
 
     const handleSpin = () => {
-        setMovieSpin(null)
-        setDisaleSpinBtn(true)
+        // Fix 1 sec delay in case when init spin time = 0
+        if (SPIN_TIME_SECONDS === 0) {
+            getRandomMovie()
+        } else {
+            setMovieSpin(null)
+            setDisaleSpinBtn(true)
+            handleTimer()
+        }
 
-        const myInterval = setInterval(() => {
-
-            if (countSpinRef.current >= SPIN_TIME_MILISECONDS) {
-                // Stop timer
-                clearInterval(myInterval);
-                getRandomMovie()
-
-                // Reinit counters
-                setCountSpin(INIT_COUNT_SPIN)
-
-                setDisaleSpinBtn(false)
-                !isChangeMsgBtn && setChangeMsgBtn(true)
-            } else {
-                setCountSpin(++countSpinRef.current)
-            }
-
-        }, 1000)
+        function handleTimer() {
+            const myInterval = setInterval(() => {
+                // +1 for reason to fix delay by one second when timer is zero
+                if (countSpinRef.current + 1 >= SPIN_TIME_SECONDS) {
+                    clearInterval(myInterval)     // Stop timer
+                    getRandomMovie()
+                    setCountSpin(INIT_COUNT_SPIN) // Reinit counters
+                    setDisaleSpinBtn(false)
+                    !isChangeMsgBtn && setChangeMsgBtn(true)
+                } else {
+                    setCountSpin(++countSpinRef.current)
+                }
+            }, 1000)
+        }
     }
+
 
     const getRandomMovie = () => {
         // Filtered Movies
@@ -113,9 +121,11 @@ export const useSpin = () => {
 
         const rndIdx = getRandomInt(fm.length)
         const rndMovie = fm[rndIdx]
-
         setMovieSpin(rndMovie)
     }
+
+    // The click SPIN button and timer Functionality 
+
 
     return {
         genres,

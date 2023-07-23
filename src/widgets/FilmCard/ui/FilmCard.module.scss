@@ -1,0 +1,45 @@
+$lineClamp: 2;
+$textMarginBottom: 12px;
+
+.filmCard {
+    display: flex;
+    gap: var(--global-step-horizontal);
+
+    .filmTitle {
+        font-size: 1.75em;
+        line-height: 1em;
+        margin-top: -0.15em;
+        margin-bottom: $textMarginBottom;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+}
+
+
+img {
+    height: 200px;
+}
+
+.wrapFilmInfoAction {
+    display: flex;
+    flex-direction: column;
+}
+
+.filmParams {
+    display: flex;
+    gap: 16px;
+}
+
+/* number of lines to show */
+.lineClamp {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $lineClamp;
+    line-clamp: $lineClamp;
+    -webkit-box-orient: vertical;
+}
+
+/* number of lines to show */
+.filmDescription {
+    margin: $textMarginBottom 0;
+}

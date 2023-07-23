@@ -2,6 +2,7 @@ import cls from './styles/App.module.scss'
 import { useSpin } from './logics/useSpin'
 import { SpinActions } from '@/features/SpinActions'
 import { FilmCardAction } from '@/features/FilmCardAction'
+import { SPIN_TIME_SECONDS } from '@/shared/configs/constants'
 
 function App() {
   const {
@@ -15,6 +16,8 @@ function App() {
     isDisableSpinBtn,
     isChangeMsgBtn,
   } = useSpin()
+
+  const timerDown = SPIN_TIME_SECONDS - countSpin
 
   return (
     <>
@@ -30,10 +33,10 @@ function App() {
             disabled={isDisableSpinBtn}
             label={isChangeMsgBtn ? 'spin again' : 'spin'}
           />
-          <FilmCardAction
-            movie={movieSpin}
-            countSpin={countSpin}
-          />
+          {movieSpin
+            ? <FilmCardAction movie={movieSpin} />
+            : timerDown + ' sec' + 'Let fate take the wheel!... Have a spin.'
+          }
         </div>
       </div>
     </>

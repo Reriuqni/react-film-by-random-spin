@@ -1,5 +1,8 @@
 $bg-color: #03DE84;
 
+$dark--bg-color: #30383B;
+$dark--text-color: #ffffffce;
+
 .button {
     width: 100%;
     background-color: #03DE84;
@@ -22,5 +25,35 @@ $bg-color: #03DE84;
     &:disabled {
         cursor: not-allowed;
         background-color: darken($bg-color, 15%);
+    }
+
+    // Dark style
+    &.dark {
+        background-color: $dark--bg-color;
+        color: $dark--text-color;
+        // font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    &.dark:hover {
+        background-color: darken($dark--bg-color, 5%);
+    }
+
+    &.dark:active {
+        background-color: darken($dark--bg-color, 15%);
+    }
+
+    &.dark:disabled {
+        cursor: not-allowed;
+        background-color: darken($dark--bg-color, 15%);
+    }
+
+    // Size style
+    &.micro {
+        width: unset;
+        padding: 0px 6px;
+        font-size: 1em;
+        line-height: 1em;
+        font-weight: normal;
     }
 }

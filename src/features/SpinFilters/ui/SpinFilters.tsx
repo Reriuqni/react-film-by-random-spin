@@ -1,4 +1,5 @@
 // import cls from '@/app/styles/app.module.scss'
+import { ANY_SCORE } from '@/shared/configs/constants'
 import cls from './SpinFilters.module.scss'
 import { Checkbox } from '@/widgets/Checkbox'
 import { Select } from '@/widgets/Select'
@@ -38,6 +39,10 @@ export const SpinFilters = ({
             <div>
                 <label>imdb</label>
                 <Select list={imdbList} handleHook={setSelectedImdb} prefixValue=" >= " disabled={isDisableSpinBtn} />
+            </div>
+            <div>
+                <label>realgood</label>
+                <Select list={[ANY_SCORE, '55', '77', '86', '92']} disabled={isDisableSpinBtn} />
             </div>
         </div>
     </>

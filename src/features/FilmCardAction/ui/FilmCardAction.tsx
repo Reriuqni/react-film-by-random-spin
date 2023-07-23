@@ -1,20 +1,10 @@
-import { SPIN_TIME_MILISECONDS } from "@/shared/configs/constants"
 import { FilmCard, FilmCardType } from "@/widgets/FilmCard"
+import cls from './FilmCardAction.module.scss'
 
-interface FilmCardActionType extends FilmCardType {
-    countSpin: number,
-}
-
-export const FilmCardAction = ({ movie, countSpin }: FilmCardActionType) => {
-    const timerDown = SPIN_TIME_MILISECONDS - countSpin
-
+export const FilmCardAction = ({ movie }: FilmCardType) => {
     return <>
-        <div>
-            {timerDown} sec
+        <div className={cls.filmCardAction}>
+            <FilmCard movie={movie} />
         </div>
-        <div>
-            {!movie && 'Let fate take the wheel!... Have a spin.'}
-        </div>
-        <FilmCard movie={movie} />
     </>
 }
