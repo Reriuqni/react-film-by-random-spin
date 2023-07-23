@@ -1,4 +1,4 @@
-import { SPIN_TIME_SECONDS } from "@/shared/configs/constants";
+import { useSpinNumberContext } from '@/shared/context/SpinNumberContext/public/useSpinNumberContext';
 import cls from './PrepareToShow.module.scss'
 import { Preloader } from "@/widgets/Preloader/ui/Preloader";
 
@@ -8,7 +8,8 @@ interface PrepareToShowType {
 }
 
 export const PrepareToShow = ({ countSpin, isShowSpiner }: PrepareToShowType) => {
-    const timerDown = SPIN_TIME_SECONDS - countSpin
+    const { spinNumber } = useSpinNumberContext()
+    const timerDown = spinNumber - countSpin
 
     return <>
         <div className={cls.wrapMsg}>

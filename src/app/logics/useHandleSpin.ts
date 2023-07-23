@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { getRandomInt } from "../../utils"
-import { ANY_SCORE, SPIN_TIME_SECONDS } from "../../shared/configs/constants"
+import { ANY_SCORE } from "../../shared/configs/constants"
 import { Movie } from "./types"
+import { useSpinNumberContext } from "@/shared/context/SpinNumberContext/public/useSpinNumberContext"
 
 const INIT_COUNT_SPIN = 0
 
@@ -23,13 +24,16 @@ export const useHandleSpin = ({
     const [countSpin, setCountSpin] = useState<number>(INIT_COUNT_SPIN)
     const countSpinRef = useRef<number>(INIT_COUNT_SPIN);
 
+    const { spinNumber } = useSpinNumberContext()
+    const SPIN_TIME = spinNumber
+
     useEffect(() => {
         countSpinRef.current = countSpin;
     }, [countSpin]);
 
     const handleSpin = () => {
         // Fix 1 sec delay in case when init spin time = 0
-        if (SPIN_TIME_SECONDS === 0) {
+        if (SPIN_TIME === 0) {
             getRandomMovie()
         } else {
             setMovieSpin(null)
@@ -54,7 +58,7 @@ export const useHandleSpin = ({
     const handleTimer = useCallback(() => {
         const myInterval = setInterval(() => {
             // +1 for reason to fix delay by one second when timer is zero
-            if (countSpinRef.current + 1 >= SPIN_TIME_SECONDS) {
+            if (countSpinRef.current + 1 >= SPIN_TIME) {
                 clearInterval(myInterval)     // Stop timer
                 getRandomMovie()
                 setCountSpin(INIT_COUNT_SPIN) // Reinit counters
@@ -64,7 +68,7 @@ export const useHandleSpin = ({
                 setCountSpin(++countSpinRef.current)
             }
         }, 1000)
-    }, [countSpinRef.current, getRandomMovie, isChangeMsgBtn])
+    }, [countSpinRef.current, getRandomMovie, isChangeMsgBtn, SPIN_TIME])
 
 
     return {

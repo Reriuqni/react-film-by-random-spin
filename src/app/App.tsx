@@ -3,6 +3,7 @@ import { useSpin } from './logics/useSpin'
 import { SpinActions } from '@/features/SpinActions'
 import { PrepareToShow } from '@/features/PrepareToShow'
 import { FilmCard } from '@/widgets/FilmCard'
+import { InputSpin } from '@/widgets/InputSpin'
 
 function App() {
   const {
@@ -17,9 +18,11 @@ function App() {
     isChangeMsgBtn,
   } = useSpin()
 
+
   return (
-    <>
-      <div className={cls.container}>
+    <div className={cls.container}>
+      <div>
+        <InputSpin />
         <div className={cls.cardSpin}>
           <SpinActions
             genres={genres}
@@ -37,7 +40,7 @@ function App() {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
