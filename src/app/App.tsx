@@ -1,9 +1,10 @@
-import { FilmCard } from '@/widgets/FilmCard'
-import { InputSpin } from '@/widgets/InputSpin'
 import { PrepareToShow } from '@/features/PrepareToShow'
 import { SpinActions } from '@/features/SpinActions'
-import cls from './styles/App.module.scss'
+import { FilmCard } from '@/widgets/FilmCard'
+import { InputSpin } from '@/widgets/InputSpin'
+
 import { useSpin } from './logics/useSpin'
+import cls from './styles/app.module.scss'
 
 function App() {
   const {
