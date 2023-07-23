@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useFetch } from "../../shared/hooks/useFetch"
-import { getRandomInt, splitIntoWholeNumbers } from "../../utils"
-import { ALL_GENRE, ANY_SCORE, SPIN_TIME_SECONDS } from "../../shared/configs/constants"
+import { splitIntoWholeNumbers } from "../../utils"
+import { ALL_GENRE, ANY_SCORE } from "../../shared/configs/constants"
 import { Movie } from "./types"
-
-const INIT_COUNT_SPIN = 0
+import { useHandleSpin } from "./useHandleSpin"
 
 export const useSpin = () => {
     const { data } = useFetch<any>('./movies_list.json')
@@ -18,44 +17,44 @@ export const useSpin = () => {
     const [selectedGenre, setSelectedGenre] = useState<string>(ALL_GENRE)
     const [selectedImdb, setSelectedImdb] = useState<string>(ANY_SCORE)
 
-    const [countSpin, setCountSpin] = useState<number>(INIT_COUNT_SPIN)
-
     useEffect(() => {
         data && setMovies(data?.movies_list || [])
     }, [data])
 
-    const getGenre = () => {
+    const updateGenre = useMemo(() => {
         if (movies.length) {
+            // Get unique genres
             const genreList = movies.map(m => m.genre_type)
-
+            // Sort genres in alphabetical order
             const _genre = [...new Set(genreList)].sort()
+            // Add constant in to the first index
             _genre.unshift(ALL_GENRE)
 
             setGenres(_genre)
         } else {
             console.log('No movies object')
         }
-    }
-
-    useEffect(() => {
-        getGenre()
-        getIMDB()
     }, [movies])
 
     useEffect(() => {
-        getIMDB()
+        updateGenre
+        updateIMDB()
+    }, [movies])
+
+    useEffect(() => {
+        updateIMDB()
     }, [selectedGenre])
 
-    const filterBySelectedGenre = () => {
+    const filterBySelectedGenre = useMemo(() => {
         let _movies = [...movies]
         if (selectedGenre !== ALL_GENRE) {
             _movies = movies.filter(m => m.genre_type === selectedGenre)
         }
         return _movies
-    }
+    }, [movies, selectedGenre])
 
-    const getIMDB = () => {
-        const _movies = filterBySelectedGenre()
+    const updateIMDB = useCallback(() => {
+        const _movies = filterBySelectedGenre
 
         const _ratingScoreNumbers = _movies.map(m => m.rating_score).sort()
         const wholeNumbers = splitIntoWholeNumbers(_ratingScoreNumbers)
@@ -69,62 +68,15 @@ export const useSpin = () => {
         _imdbList.unshift(ANY_SCORE)
 
         setImdbList(_imdbList)
+    }, [filterBySelectedGenre])
+
+    const {
+        countSpin,
+        handleSpin,
+        isChangeMsgBtn,
+        isDisableSpinBtn
     }
-
-
-    // The click SPIN button and timer Functionality 
-
-    const countSpinRef = useRef<number>(INIT_COUNT_SPIN);
-    useEffect(() => {
-        countSpinRef.current = countSpin;
-    }, [countSpin]);
-
-    const [isDisableSpinBtn, setDisaleSpinBtn] = useState<boolean>(false);
-
-    // The hook to change the label of the SPIN button if the spin button pressed more than ones
-    const [isChangeMsgBtn, setChangeMsgBtn] = useState<boolean>(false);
-
-    const handleSpin = () => {
-        // Fix 1 sec delay in case when init spin time = 0
-        if (SPIN_TIME_SECONDS === 0) {
-            getRandomMovie()
-        } else {
-            setMovieSpin(null)
-            setDisaleSpinBtn(true)
-            handleTimer()
-        }
-
-        function handleTimer() {
-            const myInterval = setInterval(() => {
-                // +1 for reason to fix delay by one second when timer is zero
-                if (countSpinRef.current + 1 >= SPIN_TIME_SECONDS) {
-                    clearInterval(myInterval)     // Stop timer
-                    getRandomMovie()
-                    setCountSpin(INIT_COUNT_SPIN) // Reinit counters
-                    setDisaleSpinBtn(false)
-                    !isChangeMsgBtn && setChangeMsgBtn(true)
-                } else {
-                    setCountSpin(++countSpinRef.current)
-                }
-            }, 1000)
-        }
-    }
-
-
-    const getRandomMovie = () => {
-        // Filtered Movies
-        let fm = filterBySelectedGenre()
-        if (selectedImdb !== ANY_SCORE) {
-            fm = fm.filter(m => m.rating_score >= parseInt(selectedImdb))
-        }
-        // Filtered Movies
-
-        const rndIdx = getRandomInt(fm.length)
-        const rndMovie = fm[rndIdx]
-        setMovieSpin(rndMovie)
-    }
-
-    // The click SPIN button and timer Functionality 
+        = useHandleSpin({ selectedImdb, setMovieSpin, filterBySelectedGenre })
 
 
     return {
@@ -141,3 +93,4 @@ export const useSpin = () => {
         isChangeMsgBtn,
     }
 }
+

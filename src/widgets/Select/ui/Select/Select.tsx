@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { ALL_GENRE } from "../../../../shared/configs/constants"
 import cls from './Select.module.scss'
 
@@ -23,6 +23,15 @@ export const Select = ({
         handleHook && handleHook(e.target.value)
     }
 
+    const optionList = useMemo(
+        () => list.map((_, idx) =>
+            <option key={idx} value={_}>
+                {prefixValue && idx ? ' >= ' + _ : _}
+            </option>
+        ),
+        [list]
+    )
+
     return <>
         <select
             className={cls.select}
@@ -30,11 +39,7 @@ export const Select = ({
             onChange={hanleSelect}
             disabled={disabled}
         >
-            {list.map((_, idx) =>
-                <option key={idx} value={_}>
-                    {prefixValue && idx ? ' >= ' + _ : _}
-                </option>
-            )}
+            {optionList}
         </select>
     </>
 }

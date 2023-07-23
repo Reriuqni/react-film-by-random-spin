@@ -28,8 +28,8 @@ export const FilmCard = ({ movie }: FilmCardType) => {
                     </p>
                     <p className={cls.filmDescription}>
                         <span className={[isShowMore && cls.lineClamp].join(' ')}>
-                            . Nam congue eu nisl a venenatis. Nulla id felis pellentesque, malesuada eros id, accumsan lorem.
                             {movie.description}
+                            Nam congue eu nisl a venenatis. Nulla id felis pellentesque, malesuada eros id, accumsan lorem.
                         </span>
                         <span onClick={() => setShowMore(!isShowMore)}>
                             <Button
