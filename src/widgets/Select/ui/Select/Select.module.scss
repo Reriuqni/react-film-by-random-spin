@@ -6,6 +6,7 @@ $optionPadding: 4px;
     padding: $optionPadding;
     border-radius: 3px;
     color: var(--text-color--secondary);
+    text-transform: capitalize;
 
     &:focus,
     &:hover {
