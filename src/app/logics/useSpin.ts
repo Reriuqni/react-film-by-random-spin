@@ -45,7 +45,7 @@ export const useSpin = () => {
         updateIMDB()
     }, [selectedGenre])
 
-    const filterBySelectedGenre = useMemo(() => {
+    const filteredMovieBySelectedGenre = useMemo(() => {
         let _movies = [...movies]
         if (selectedGenre !== ALL_GENRE) {
             _movies = movies.filter(m => m.genre_type === selectedGenre)
@@ -53,10 +53,11 @@ export const useSpin = () => {
         return _movies
     }, [movies, selectedGenre])
 
+    /**
+     * Update IMDB list score relative to selected Genre
+     */
     const updateIMDB = useCallback(() => {
-        const _movies = filterBySelectedGenre
-
-        const _ratingScoreNumbers = _movies.map(m => m.rating_score).sort()
+        const _ratingScoreNumbers = filteredMovieBySelectedGenre.map(m => m.rating_score).sort()
         const wholeNumbers = splitIntoWholeNumbers(_ratingScoreNumbers)
 
         if (selectedImdb !== ANY_SCORE && !wholeNumbers.includes(parseInt(selectedImdb))) {
@@ -68,7 +69,7 @@ export const useSpin = () => {
         _imdbList.unshift(ANY_SCORE)
 
         setImdbList(_imdbList)
-    }, [filterBySelectedGenre])
+    }, [filteredMovieBySelectedGenre])
 
     const {
         countSpin,
@@ -76,7 +77,7 @@ export const useSpin = () => {
         isChangeMsgBtn,
         isDisableSpinBtn
     }
-        = useHandleSpin({ selectedImdb, setMovieSpin, filterBySelectedGenre })
+        = useHandleSpin({ selectedImdb, setMovieSpin, filteredMovieBySelectedGenre })
 
 
     return {

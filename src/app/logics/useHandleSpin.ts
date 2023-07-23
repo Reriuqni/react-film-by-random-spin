@@ -10,22 +10,19 @@ const INIT_COUNT_SPIN = 0
 interface HookHandleSpinType {
     selectedImdb: string,
     setMovieSpin: React.Dispatch<React.SetStateAction<Movie | null>>,
-    filterBySelectedGenre: Movie[],
+    filteredMovieBySelectedGenre: Movie[],
 }
 
 export const useHandleSpin = ({
     selectedImdb,
     setMovieSpin,
-    filterBySelectedGenre,
+    filteredMovieBySelectedGenre,
 }: HookHandleSpinType) => {
-
     const [isChangeMsgBtn, setChangeMsgBtn] = useState<boolean>(false);
     const [isDisableSpinBtn, setDisaleSpinBtn] = useState<boolean>(false);
-
-
     const [countSpin, setCountSpin] = useState<number>(INIT_COUNT_SPIN)
-
     const countSpinRef = useRef<number>(INIT_COUNT_SPIN);
+
     useEffect(() => {
         countSpinRef.current = countSpin;
     }, [countSpin]);
@@ -58,7 +55,7 @@ export const useHandleSpin = ({
 
     const getRandomMovie = () => {
         // Filtered Movies
-        let fm = filterBySelectedGenre
+        let fm = filteredMovieBySelectedGenre
         if (selectedImdb !== ANY_SCORE) {
             fm = fm.filter(m => m.rating_score >= parseInt(selectedImdb))
         }
