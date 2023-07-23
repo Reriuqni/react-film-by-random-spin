@@ -1,5 +1,4 @@
 {
-  "homepage": "http://Reriuqni.github.io/react-get-film-using-random-spin",
   "name": "react-get-film-using-random-spin",
   "private": true,
   "version": "0.0.0",
@@ -24,7 +23,6 @@
     "eslint": "^8.44.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "gh-pages": "^5.0.0",
     "sass": "^1.64.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
