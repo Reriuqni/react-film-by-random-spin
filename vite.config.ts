@@ -7,5 +7,5 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
-  base: "/react-get-film-using-random-spin"
+  // base: "/react-get-film-using-random-spin"
 })
