@@ -32,8 +32,8 @@ export const SpinFilters = ({
             <div>
                 <label className={cls.label}>type</label>
                 <div className={cls.wrapCheckboxes}>
-                    <Checkbox label="Movies" value={isTypeMovie} onChange={() => setTypeMovie(!isTypeMovie)} />
-                    <Checkbox label="TV Shows" value={isTypeTVShow} onChange={() => setTypeTVShow(!isTypeTVShow)} />
+                    <Checkbox label="Movies" value={isTypeMovie} onChange={() => setTypeMovie(!isTypeMovie)} disabled={isDisableSpinBtn} />
+                    <Checkbox label="TV Shows" value={isTypeTVShow} onChange={() => setTypeTVShow(!isTypeTVShow)} disabled={isDisableSpinBtn} />
                 </div>
             </div>
             <div>
