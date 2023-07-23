@@ -1,6 +1,9 @@
-import cls from './SpinActions.module.scss'
 import { SpinFilters, SpinFiltersType } from '@/features/SpinFilters/index'
 import { Button, ButtonType } from '@/widgets/Button/index'
+
+
+import cls from './SpinActions.module.scss'
+
 
 type SpinActionsType = SpinFiltersType & ButtonType
 

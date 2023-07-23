@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react"
-import { ALL_GENRE } from "../../../../shared/configs/constants"
+
+import { ALL_GENRE } from "@/shared/configs/constants"
+
 import cls from './Select.module.scss'
 
 interface SelectType {

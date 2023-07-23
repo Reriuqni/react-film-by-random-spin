@@ -1,5 +1,6 @@
 import { SpinNumberConsumer } from "@/shared/context/SpinNumberContext"
 
+
 export const InputSpin = () => {
     return (
         <label style={{ lineHeight: '40px', color: 'black' }}>

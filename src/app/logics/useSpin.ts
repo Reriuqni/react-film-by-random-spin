@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { useFetch } from "../../shared/hooks/useFetch"
+
+import { ALL_GENRE, ANY_SCORE } from "@/shared/configs/constants"
+import { useFetch } from "@/shared/hooks/useFetch"
+
 import { splitIntoWholeNumbers } from "../../utils"
-import { ALL_GENRE, ANY_SCORE } from "../../shared/configs/constants"
 import { Movie } from "./types"
 import { useHandleSpin } from "./useHandleSpin"
 

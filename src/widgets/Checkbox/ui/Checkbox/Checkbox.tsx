@@ -1,5 +1,6 @@
 import cls from './Checkbox.module.scss'
 
+
 interface CheckboxMovieType {
     label: string,
     value: boolean,

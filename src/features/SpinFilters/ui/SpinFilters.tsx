@@ -1,9 +1,11 @@
-// import cls from '@/app/styles/app.module.scss'
+import { useState } from 'react'
+
 import { ANY_SCORE } from '@/shared/configs/constants'
-import cls from './SpinFilters.module.scss'
 import { Checkbox } from '@/widgets/Checkbox'
 import { Select } from '@/widgets/Select'
-import { useState } from 'react'
+
+import cls from './SpinFilters.module.scss'
+
 
 export interface SpinFiltersType {
     genres: string[],

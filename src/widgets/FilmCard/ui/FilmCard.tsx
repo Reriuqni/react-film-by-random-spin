@@ -1,8 +1,12 @@
+import { useMemo, useState } from "react"
+
 import { Movie } from "@/app/logics/types"
-import cls from './FilmCard.module.scss'
+
 import { getRandomInt } from "@/utils"
 import { Button, ButtonSize, ButtonStyle } from "@/widgets/Button"
-import { useMemo, useState } from "react"
+
+import cls from './FilmCard.module.scss'
+
 
 export interface FilmCardType {
     movie: Movie,

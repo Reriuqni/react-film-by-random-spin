@@ -1,6 +1,8 @@
-import { useSpinNumberContext } from '@/shared/context/SpinNumberContext/public/useSpinNumberContext';
-import cls from './PrepareToShow.module.scss'
+import { useSpinNumberContext } from '@/shared/context/SpinNumberContext';
 import { Preloader } from "@/widgets/Preloader/ui/Preloader";
+
+import cls from './PrepareToShow.module.scss'
+
 
 interface PrepareToShowType {
     countSpin: number,

@@ -1,8 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { getRandomInt } from "../../utils"
-import { ANY_SCORE } from "../../shared/configs/constants"
-import { Movie } from "./types"
+
+
+import { ANY_SCORE } from "@/shared/configs/constants"
 import { useSpinNumberContext } from "@/shared/context/SpinNumberContext"
+import { getRandomInt } from "@/utils"
+
+import { Movie } from "./types"
+
 
 const INIT_COUNT_SPIN = 0
 

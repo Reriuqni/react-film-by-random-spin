@@ -1,9 +1,9 @@
-import cls from './styles/App.module.scss'
-import { useSpin } from './logics/useSpin'
-import { SpinActions } from '@/features/SpinActions'
-import { PrepareToShow } from '@/features/PrepareToShow'
 import { FilmCard } from '@/widgets/FilmCard'
 import { InputSpin } from '@/widgets/InputSpin'
+import { PrepareToShow } from '@/features/PrepareToShow/ui'
+import { SpinActions } from '@/features/SpinActions'
+import cls from './styles/App.module.scss'
+import { useSpin } from './logics/useSpin'
 
 function App() {
   const {
