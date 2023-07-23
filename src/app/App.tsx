@@ -1,8 +1,8 @@
 import cls from './styles/App.module.scss'
 import { useSpin } from './logics/useSpin'
 import { SpinActions } from '@/features/SpinActions'
-import { FilmCardAction } from '@/features/FilmCardAction'
 import { PrepareToShow } from '@/features/PrepareToShow'
+import { FilmCard } from '@/widgets/FilmCard'
 
 function App() {
   const {
@@ -32,7 +32,7 @@ function App() {
             label={isChangeMsgBtn ? 'spin again' : 'spin'}
           />
           {movieSpin
-            ? <FilmCardAction movie={movieSpin} />
+            ? <FilmCard movie={movieSpin} />
             : <PrepareToShow countSpin={countSpin} isShowSpiner={isDisableSpinBtn} />
           }
         </div>
