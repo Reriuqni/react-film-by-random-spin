@@ -1,4 +1,4 @@
-import { SpinNumberConsumer } from "@/shared/context/SpinNumberContext/public/SpinNumberConsumer"
+import { SpinNumberConsumer } from "@/shared/context/SpinNumberContext"
 
 export const InputSpin = () => {
     return (

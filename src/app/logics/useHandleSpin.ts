@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { getRandomInt } from "../../utils"
 import { ANY_SCORE } from "../../shared/configs/constants"
 import { Movie } from "./types"
-import { useSpinNumberContext } from "@/shared/context/SpinNumberContext/public/useSpinNumberContext"
+import { useSpinNumberContext } from "@/shared/context/SpinNumberContext"
 
 const INIT_COUNT_SPIN = 0
 
