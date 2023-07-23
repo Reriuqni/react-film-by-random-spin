@@ -43,3 +43,22 @@ img {
 .filmDescription {
     margin: $textMarginBottom 0;
 }
+
+.filmAction {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.wrapFavorite {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 500px) {
+    .wrapFavorite {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}

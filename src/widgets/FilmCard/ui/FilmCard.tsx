@@ -40,8 +40,8 @@ export const FilmCard = ({ movie }: FilmCardType) => {
                         </span>
                     </p>
                 </div>
-                <div className="filmAction" style={{ display: 'flex', gap: '16px', flexDirection: 'column', marginTop: 'auto' }}>
-                    <div className="favoritWrap" style={{ display: 'flex', gap: '16px' }}>
+                <div className={cls.filmAction}>
+                    <div className={cls.wrapFavorite}>
                         <Button label={"+ Want to See"} buttonStyle={ButtonStyle.DARK} />
                         <Button label={"Seen It"} buttonStyle={ButtonStyle.DARK} />
                     </div>

@@ -1,3 +1,5 @@
+$column1-width: 60px;
+
 .rowsFilter {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,7 @@
 
     >div {
         display: grid;
-        grid-template-columns: 60px 160px;
+        grid-template-columns: $column1-width calc(100% - $column1-width - var(--global-step-horizontal));
         width: 100%;
         gap: var(--global-step-horizontal);
 

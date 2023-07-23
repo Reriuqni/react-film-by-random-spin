@@ -18,3 +18,9 @@
     display: flex;
     gap: calc(var(--global-step-horizontal) * 1.5);
 }
+
+@media (max-width: $break-point--mobile) {
+    .cardSpin {
+        flex-wrap: wrap;
+    }
+}

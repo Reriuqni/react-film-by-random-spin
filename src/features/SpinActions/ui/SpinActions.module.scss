@@ -1,5 +1,14 @@
+@import '../../../app/styles/variables.scss';
+
 .wrapFilters {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem
+    gap: 1.5rem;
+    min-width: 236px;
+}
+
+@media (max-width: $break-point--mobile) {
+    .wrapFilters {
+        width: 100%;
+    }
 }
