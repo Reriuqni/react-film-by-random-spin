@@ -16,8 +16,8 @@ export const useSpin = () => {
     const [movieSpin, setMovieSpin] = useState<Movie | null>(null)
     const [imdbList, setImdbList] = useState<string[]>([ANY_SCORE])
 
-    const [selectedGenre, setSelectedGenre] = useState<string>(ALL_GENRE)
-    const [selectedImdb, setSelectedImdb] = useState<string>(ANY_SCORE)
+    const [selectedGenre, setSelectedGenre] = useState(ALL_GENRE)
+    const [selectedImdb, setSelectedImdb] = useState(ANY_SCORE)
 
     useEffect(() => {
         data && setMovies(data?.movies_list || [])

@@ -1,5 +1,6 @@
 import cls from './Button.module.scss'
 
+
 export enum ButtonStyle {
     DARK = 'dark',
     // LIGHT = 'light',
@@ -20,7 +21,7 @@ export interface ButtonType {
 }
 
 export const Button = ({
-    onClick = () => { },
+    onClick,
     disabled = false,
     label,
     size,

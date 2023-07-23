@@ -4,9 +4,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     color: var(--text-color--secondary);
     font: var(--font-s);
+}
+
+.positionInput {
+    max-width: var(--card-spin--max-width);
+    width: 100%;
+
+    input {
+        max-width: 50px;
+    }
 }
 
 .cardSpin {
