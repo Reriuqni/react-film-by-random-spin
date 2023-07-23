@@ -57,7 +57,7 @@ export const useHandleSpin = ({
         const rndIdx = getRandomInt(fm.length)
         const rndMovie = fm[rndIdx]
         setMovieSpin(rndMovie)
-    }, [selectedImdb, filteredMovieBySelectedGenre])
+    }, [selectedImdb, filteredMovieBySelectedGenre, setMovieSpin])
 
     const handleTimer = useCallback(() => {
         const myInterval = setInterval(() => {
@@ -72,7 +72,7 @@ export const useHandleSpin = ({
                 setCountSpin(++countSpinRef.current)
             }
         }, 1000)
-    }, [countSpinRef.current, getRandomMovie, isChangeMsgBtn, SPIN_TIME])
+    }, [getRandomMovie, isChangeMsgBtn, SPIN_TIME])
 
 
     return {
